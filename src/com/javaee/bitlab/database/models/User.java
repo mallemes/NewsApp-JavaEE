@@ -14,7 +14,13 @@ public class User {
         this.fullName = fullName;
         this.isAdmin = isAdmin;
     }
+    public User(){
 
+    }
+    public User(Long id, String fullName){
+        this.id = id;
+        this.fullName = fullName;
+    }
     public boolean isAdmin() {
         return isAdmin;
     }

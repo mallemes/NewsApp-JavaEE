@@ -1,15 +1,27 @@
 package com.javaee.bitlab.database.models;
 
+import java.sql.Timestamp;
+
 public class News {
-    Long id;
+    private Long id;
 
-    String title;
+    private String title;
 
-    String content;
+    private String content;
 
-    User user;
+    private User user;
 
-    Category category;
+    private Category category;
+
+    private Timestamp createdAt;
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;
