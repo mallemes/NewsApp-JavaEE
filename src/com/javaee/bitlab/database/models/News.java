@@ -15,6 +15,24 @@ public class News {
 
     private Timestamp createdAt;
 
+    public News(Long id, String title, String content, User user, Category category, Timestamp createdAt) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.user = user;
+        this.category = category;
+        this.createdAt = createdAt;
+    }
+
+    public News() {
+
+    }
+
+    public News(Long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
     public Timestamp getCreatedAt() {
         return createdAt;
     }

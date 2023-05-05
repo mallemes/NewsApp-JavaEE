@@ -6,6 +6,15 @@ public class User {
     private String password;
     private String fullName;
     private boolean isAdmin;
+    private boolean isBanned;
+
+    public boolean isBanned() {
+        return isBanned;
+    }
+
+    public void setBanned(boolean banned) {
+        isBanned = banned;
+    }
 
     public User(Long id, String email, String password, String fullName, boolean isAdmin) {
         this.id = id;

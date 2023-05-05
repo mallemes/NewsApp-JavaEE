@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
         String password2 = request.getParameter("password2");
         String fullName = request.getParameter("fullName");
         if (password.equals(password2)) {
-           User user =  UserService.findUserThroughEmail(email);
+           User user =  UserService.findUserByEmail(email);
            if (user != null){
                request.setAttribute("error", "email must be unique");
                request.setAttribute("fullName", fullName);

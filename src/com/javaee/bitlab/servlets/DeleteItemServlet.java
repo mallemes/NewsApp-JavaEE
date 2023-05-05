@@ -13,9 +13,9 @@ public class DeleteItemServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        DBConnection.deleteItem(id);
-        response.sendRedirect("/?delete_success");
+//        Long id = Long.parseLong(request.getParameter("id"));
+//        DBConnection.deleteItem(id);
+//        response.sendRedirect("/?delete_success");
     }
 
 }

@@ -1,27 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Tasks</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-          crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
 
 </head>
 <body>
-<div class="navbar">
-    <div>
-        <strong>BITLAB SHOP</strong>
-    </div>
-    <div>
-        <a class="navbuttons" href="/">Top Sales</a>
-        <a class="navbuttons" href="/">New Sales</a>
-        <a class="navbuttons" href="/register">register</a>
-        <a class="navbuttons" href="/login">login</a>
-    </div>
-</div>
+<%@include file="includes/navbar.jsp"%>
 <%
     String error = (String) request.getAttribute("error");
     if (error != null){

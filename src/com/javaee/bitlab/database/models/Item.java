@@ -2,6 +2,8 @@ package com.javaee.bitlab.database.models;
 
 public class Item {
 
+
+
     private Long id;
     private String name;
     private String description;
@@ -37,9 +39,7 @@ public class Item {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+
 
     public int getPrice() {
         return price;

@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 public class UserService extends DBConnection {
 
 
-    public static User findUserThroughEmail(String email) {
+    public static User findUserByEmail(String email) {
         User user = null;
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users where email = ?");
@@ -35,7 +35,7 @@ public class UserService extends DBConnection {
         try {
             PreparedStatement statement = connection.prepareStatement(""+
                     "INSERT into users " +
-                    "(email, password, full_name) " +
+                    "(email, password, full_name, is_admin) " +
                     "values (?, ?, ?, ?)");
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getPassword());

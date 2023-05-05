@@ -14,7 +14,7 @@ public class CategoryService extends DBConnection {
     public static ArrayList<Category> getCategories() {
         ArrayList<Category> categories = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("select * from category");
+            PreparedStatement statement = connection.prepareStatement("select * from categories");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 categories.add(new Category(
@@ -63,6 +63,43 @@ public class CategoryService extends DBConnection {
             e.printStackTrace();
         }
         return comments;
+    }
+
+    public static void deleteCategory(Long id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("delete from categories where id = ?");
+            statement.setLong(1, id);
+            statement.executeUpdate();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void editCategory(Category category) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "update from categories " +
+                    "set name = ? " +
+                    "where id = ?");
+            statement.setString(1, category.getName());
+            statement.setLong(2, category.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void createCategory(Category category) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "insert into categories (name) " +
+                    "values (?)");
+            statement.setString(1, category.getName());
+            statement.executeUpdate();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
