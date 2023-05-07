@@ -2,6 +2,7 @@ package com.javaee.bitlab.database.service;
 
 import com.javaee.bitlab.database.DBConnection;
 import com.javaee.bitlab.database.models.Category;
+import com.javaee.bitlab.database.models.Comment;
 import com.javaee.bitlab.database.models.News;
 import com.javaee.bitlab.database.models.User;
 
@@ -115,5 +116,30 @@ public class NewsService extends DBConnection {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static ArrayList<Comment> getNewsComment(Long newsId){
+        ArrayList<Comment> comments = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "SELECT c.id, c.comment, c.created_at, c.user_id, u.full_name FROM comments c " +
+                    "INNER JOIN users u ON u.id = c.user_id " +
+                    "where c.news_id = ? " +
+                    "ORDER BY c.created_at DESC");
+            statement.setLong(1, newsId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Comment comment = new Comment();
+                comment.setId(resultSet.getLong("id"));
+                comment.setComment(resultSet.getString("comment"));
+                comment.setCreatedAt(resultSet.getTimestamp("created_at"));
+                comment.setUser(new User(resultSet.getLong("user_id"),
+                        resultSet.getString("full_name")));
+                comments.add(comment);
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return comments;
     }
 }

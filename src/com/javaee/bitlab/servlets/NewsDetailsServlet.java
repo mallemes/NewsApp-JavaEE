@@ -1,7 +1,9 @@
 package com.javaee.bitlab.servlets;
 import com.javaee.bitlab.database.models.Category;
+import com.javaee.bitlab.database.models.Comment;
 import com.javaee.bitlab.database.models.News;
 import com.javaee.bitlab.database.models.User;
+import com.javaee.bitlab.database.service.CategoryService;
 import com.javaee.bitlab.database.service.NewsService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(value = "/news-details")
 public class NewsDetailsServlet extends HttpServlet {
@@ -21,6 +24,10 @@ public class NewsDetailsServlet extends HttpServlet {
             return;
         }
         request.setAttribute("news", news);
+        ArrayList<Category> categories = CategoryService.getCategories();
+        request.setAttribute("categories", categories);
+        ArrayList<Comment> comments = NewsService.getNewsComment(news.getId());
+        request.setAttribute("comments", comments);
         request.getRequestDispatcher("/news_details.jsp").forward(request, response);
     }
 

@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.javaee.bitlab.database.models.News" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,7 @@
     <div class="row mt-3">
         <div class="col-12">
             <%
+                DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm");
                 ArrayList<News> news_list = (ArrayList<News>) request.getAttribute("news_list");
                 if (news_list != null) {
                     for (News n : news_list) {
@@ -33,7 +35,7 @@
                 <p>
                     Posted by <strong><%=n.getUser().getFullName()%>
                 </strong>
-                    At <strong><%=n.getCreatedAt()%>
+                    At <strong><%=n.getCreatedAt().toLocalDateTime().format(myFormatObj)%>
                 </strong>
                 </p>
                 <p>Category: <%=n.getCategory().getName()%></p>
