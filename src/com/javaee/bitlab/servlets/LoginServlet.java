@@ -1,5 +1,7 @@
 package com.javaee.bitlab.servlets;
 
+import com.javaee.bitlab.database.models.Category;
+import com.javaee.bitlab.database.service.CategoryService;
 import com.javaee.bitlab.database.service.UserService;
 import com.javaee.bitlab.database.models.User;
 import jakarta.servlet.ServletException;
@@ -10,11 +12,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ArrayList<Category> categories = CategoryService.getCategories();
+        request.setAttribute("categories", categories);
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 

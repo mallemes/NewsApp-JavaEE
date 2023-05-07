@@ -1,8 +1,6 @@
 package com.javaee.bitlab.servlets;
 
-import com.javaee.bitlab.database.DBConnection;
 import com.javaee.bitlab.database.models.Category;
-import com.javaee.bitlab.database.models.Item;
 import com.javaee.bitlab.database.models.News;
 import com.javaee.bitlab.database.service.CategoryService;
 import com.javaee.bitlab.database.service.NewsService;
@@ -20,7 +18,6 @@ public class HomeServlet extends HttpServlet {
 
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         ArrayList<News> news = NewsService.getNewsList();
         request.setAttribute("news_list", news);
         ArrayList<Category> categories = CategoryService.getCategories();

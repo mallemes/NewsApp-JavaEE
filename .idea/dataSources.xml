@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db" uuid="e020d186-55c0-4e1c-bf0b-a75307ff9f99">
+    <data-source source="LOCAL" name="db" uuid="24e39e14-922c-46a2-b774-3bb9fd53acc0">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Admin\IdeaProjects\bitlab_JavaEE_final\src\com\javaee\bitlab\database\db.sqlite3</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.40.1/org/xerial/sqlite-jdbc/3.40.1.0/sqlite-jdbc-3.40.1.0.jar</url>
-        </library>
-      </libraries>
-    </data-source>
-    <data-source source="LOCAL" name="db [2]" uuid="b91b3de6-01b4-479c-80c6-2f23ed1e5639">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Admin\IdeaProjects\bitlab_JavaEE_final\out\production\bitlab_JavaEE_final\com\javaee\bitlab\database\db.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\Admin\IdeaProjects\bitlab_JavaEE_final\db.sqlite3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

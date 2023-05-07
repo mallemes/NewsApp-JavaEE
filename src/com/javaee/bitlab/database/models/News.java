@@ -28,6 +28,14 @@ public class News {
 
     }
 
+    public News(Long id, String title, String content, Category category) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+    }
+
+
     public News(Long id, String title) {
         this.id = id;
         this.title = title;

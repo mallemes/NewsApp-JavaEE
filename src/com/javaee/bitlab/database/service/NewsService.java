@@ -87,10 +87,10 @@ public class NewsService extends DBConnection {
         }
     }
 
-    public static void deleteNews(Long id) {
+    public static void deleteNews(News news) {
         try {
             PreparedStatement statement = connection.prepareStatement("delete from news where id = ?");
-            statement.setLong(1, id);
+            statement.setLong(1, news.getId());
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {
