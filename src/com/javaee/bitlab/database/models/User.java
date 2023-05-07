@@ -16,12 +16,13 @@ public class User {
         isBanned = banned;
     }
 
-    public User(Long id, String email, String password, String fullName, boolean isAdmin) {
+    public User(Long id, String email, String password, String fullName, boolean isAdmin, boolean isBanned) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.fullName = fullName;
         this.isAdmin = isAdmin;
+        this.isBanned = isBanned;
     }
     public User(){
 

@@ -2,6 +2,7 @@ package com.javaee.bitlab.database.service;
 
 import com.javaee.bitlab.database.DBConnection;
 import com.javaee.bitlab.database.models.Comment;
+import com.javaee.bitlab.database.models.News;
 
 import java.sql.PreparedStatement;
 
@@ -24,6 +25,17 @@ public class CommentService extends DBConnection {
         try {
             PreparedStatement statement = connection.prepareStatement("delete from comments where id = ?");
             statement.setLong(1, id);
+            statement.executeUpdate();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void deleteCommentsByNewsId(News news) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "DELETE FROM comments WHERE news_id = ?; ");
+            statement.setLong(1, news.getId());
             statement.executeUpdate();
             statement.close();
         } catch (Exception e) {

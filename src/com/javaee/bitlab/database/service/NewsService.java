@@ -51,7 +51,7 @@ public class NewsService extends DBConnection {
                     "INNER JOIN users u ON u.id = n.user_id " +
                     "INNER JOIN categories cat ON cat.id = n.cat_id " +
                     "where n.id = ?"
-                    );
+            );
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -76,7 +76,7 @@ public class NewsService extends DBConnection {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT into news (title, content, user_id, cat_id, created_at) " +
-                            "values (?, ?, ?, ?, NOW())");
+                            "values (?, ?, ?, ?, datetime('now', 'localtime'))");
             statement.setString(1, news.getTitle());
             statement.setString(2, news.getContent());
             statement.setLong(3, news.getUser().getId());
@@ -90,7 +90,8 @@ public class NewsService extends DBConnection {
 
     public static void deleteNews(News news) {
         try {
-            PreparedStatement statement = connection.prepareStatement("delete from news where id = ?");
+            PreparedStatement statement = connection.prepareStatement("" +
+                    "DELETE FROM news WHERE id = ?; ");
             statement.setLong(1, news.getId());
             statement.executeUpdate();
             statement.close();
@@ -117,7 +118,8 @@ public class NewsService extends DBConnection {
             e.printStackTrace();
         }
     }
-    public static ArrayList<Comment> getNewsComment(Long newsId){
+
+    public static ArrayList<Comment> getNewsComment(Long newsId) {
         ArrayList<Comment> comments = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement("" +
@@ -141,5 +143,36 @@ public class NewsService extends DBConnection {
             e.printStackTrace();
         }
         return comments;
+    }
+    public static ArrayList<News> searchNews(String key) {
+        ArrayList<News> newsList = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT n.id, n.title, n.content, n.created_at, n.cat_id, n.user_id, " +
+                            "cat.name, u.full_name FROM news n " +
+                            "INNER JOIN users u ON u.id = n.user_id " +
+                            "INNER JOIN categories cat ON cat.id = n.cat_id " +
+                            "WHERE LOWER(n.title) LIKE LOWER(?) " +
+                            "ORDER BY n.created_at DESC");
+            statement.setString(1, key);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                News news = new News();
+                news.setId(resultSet.getLong("id"));
+                news.setTitle(resultSet.getString("title"));
+                news.setContent(resultSet.getString("content"));
+                news.setCreatedAt(resultSet.getTimestamp("created_at"));
+                news.setCategory(new Category(resultSet.getLong("cat_id"),
+                        resultSet.getString("name")));
+                news.setUser(new User(resultSet.getLong("user_id"),
+                        resultSet.getString("full_name")));
+                newsList.add(news);
+            }
+            statement.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newsList;
     }
 }

@@ -33,9 +33,9 @@
                 <p><%=n.getContent()%>
                 </p>
                 <p>
-                    Posted by <strong><%=n.getUser().getFullName()%>
+                    Posted by: <strong><%=n.getUser().getFullName()%><br>
                 </strong>
-                    At <strong><%=n.getCreatedAt().toLocalDateTime().format(myFormatObj)%>
+                    At: <strong><%=n.getCreatedAt().toLocalDateTime().format(myFormatObj)%>
                 </strong>
                 </p>
                 <p>Category: <%=n.getCategory().getName()%></p>

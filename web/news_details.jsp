@@ -39,6 +39,12 @@
         </p>
         <% if (currentUser != null && Objects.equals(currentUser.getId(), news.getUser().getId())) { %>
         <div>
+            <form action="/delete-news" method="post">
+                <input type="hidden" name="newsId" value="<%=news.getId()%>">
+                <button class="btn btn-danger">delete</button>
+            </form>
+        </div>
+        <div>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 edit
@@ -83,6 +89,13 @@
                                                 <textarea class="form-control" name="content"
                                                           placeholder="Insert content:" required
                                                           rows="3"><%=news.getContent()%></textarea>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        <label>
+                                            CATEGORY :
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
@@ -151,7 +164,7 @@
                             Duration duration = Duration.between(desiredDateTime, now);
                             long minutesAgo = duration.toMinutes();
                         %>
-                        <small class="text-body-secondary"><%=minutesAgo%> minutes later</small>
+                        <small class="text-body-secondary"><%=minutesAgo%> minutes ago</small>
                     </div>
                     <p class="mb-1"><%=comment.getComment()%>
                     </p>

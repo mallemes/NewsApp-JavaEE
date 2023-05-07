@@ -20,7 +20,8 @@ public class UserService extends DBConnection {
                         resultSet.getString("email"),
                         resultSet.getString("password"),
                         resultSet.getString("full_name"),
-                        resultSet.getBoolean("is_admin")
+                        resultSet.getBoolean("is_admin"),
+                        resultSet.getBoolean("is_banned")
                 );
             }
             statement.close();

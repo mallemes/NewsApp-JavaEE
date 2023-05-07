@@ -2,6 +2,7 @@ package com.javaee.bitlab.servlets;
 
 import com.javaee.bitlab.database.models.News;
 import com.javaee.bitlab.database.models.User;
+import com.javaee.bitlab.database.service.CommentService;
 import com.javaee.bitlab.database.service.NewsService;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -20,8 +21,9 @@ public class DeleteNewsServlet extends HttpServlet {
             return;
         }
         User user = (User) request.getSession().getAttribute("authUser");
-        News news = NewsService.getNews(Long.parseLong(request.getParameter("news_id")));
+        News news = NewsService.getNews(Long.parseLong(request.getParameter("newsId")));
         if (news.getUser().getId().equals(user.getId())) {
+            CommentService.deleteCommentsByNewsId(news);
             NewsService.deleteNews(news);
         }
         response.sendRedirect("/home");

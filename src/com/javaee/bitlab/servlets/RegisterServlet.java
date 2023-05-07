@@ -17,12 +17,20 @@ import java.util.ArrayList;
 public class RegisterServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("authUser") != null) {
+            response.sendRedirect("/home");
+            return;
+        }
         ArrayList<Category> categories = CategoryService.getCategories();
         request.setAttribute("categories", categories);
         request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (request.getSession().getAttribute("authUser") != null) {
+            response.sendRedirect("/home");
+            return;
+        }
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String password2 = request.getParameter("password2");
@@ -34,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
                request.setAttribute("fullName", fullName);
                request.getRequestDispatcher("/register.jsp").forward(request, response);
            }else {
-               UserService.RegisterUser(new User(null, email, password, fullName, false));
+               UserService.RegisterUser(new User(null, email, password, fullName, false, false));
                response.sendRedirect("/login?register_success");
            }
         } else {

@@ -1,61 +1,72 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>bitlab shop</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
 <body>
-<div class="navbar">
-    <div>
-        <strong>BITLAB SHOP</strong>
-    </div>
-    <div>
-        <a class="navbuttons" href="/">Top Sales</a>
-        <a class="navbuttons" href="/">New Sales</a>
-        <a class="navbuttons" href="/add_item">Add Item</a>
-        <a class="navbuttons" href="/profile">profile</a>
-    </div>
-</div>
-<div class="container" style="margin-top: 60px">
-    <div  class="login">
+<%@include file="includes/navbar.jsp" %>
+<div class="container " style="margin-top: 60px; margin-left: 14rem">
+    <div class="login">
         <div class="card bg-light mb-3" style="max-width: 46rem;box-shadow: 2px 2px 2px 2px rgba(0.6, 0.6, 0.6, 0.6);">
             <div class="card-header">
-                <h3>ADD ITEM</h3>
+                <h3>ADD NEWS</h3>
             </div>
-            <form method="post" action="/add_item" class="card-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">name :</label>
-                    <input required type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp"
-                           placeholder="name">
+            <form action="/add/news" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>
+                                TITLE :
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <input type="text" class="form-control" name="title" required
+                                   placeholder="Insert title:">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <label>
+                                CONTENT :
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <textarea class="form-control" name="content"
+                                      placeholder="Insert content:" required
+                                      rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <label>
+                                CATEGORY :
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <select class="form-control" name="categoryId">
+                                <%
+                                    for (Category category : categories) {
+                                %>
+                                <option value="<%=category.getId()%>"><%=category.getName()%>
+                                </option>
+                                <%
+                                    }
+                                %>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Description :</label>
-                    <input required type="text" name="description" class="form-control" id="exampleInputPassword1" placeholder="Description">
+                <div class="modal-footer">
+                    <button class="btn btn-success">Create</button>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail3">Price :</label>
-                    <input required type="number" name="price" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp"
-                           placeholder="Price">
-                </div>
-                <button class="btn btn-success" type="submit" style="margin-top: 10px">submit</button>
             </form>
         </div>
 
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+
 </body>
 </html>

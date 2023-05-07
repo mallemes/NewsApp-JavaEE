@@ -40,7 +40,7 @@
             <a href="#"><i class="fa fa-facebook"></i></a>
         </div>
         <p>
-            <button class="btn btn-danger">logout</button>
+            <a href="/logout" class="btn btn-danger">logout</a>
         </p>
     </div>
 </div>
