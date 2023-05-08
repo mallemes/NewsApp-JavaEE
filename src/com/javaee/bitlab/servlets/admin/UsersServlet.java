@@ -37,9 +37,9 @@ public class UsersServlet extends HttpServlet {
         Long UserId = Long.parseLong(req.getParameter("userId"));
         if (req.getParameter("action") != null) {
             if (req.getParameter("action").equals("true"))
-                AdminService.toggleBanUser(UserId, true);
-            else if (req.getParameter("action").equals("false"))
                 AdminService.toggleBanUser(UserId, false);
+            else if (req.getParameter("action").equals("false"))
+                AdminService.toggleBanUser(UserId, true);
         }
         resp.sendRedirect("/admin/users/");
     }
